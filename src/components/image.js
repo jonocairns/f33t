@@ -1,10 +1,9 @@
-import React, { useState } from "react"
+import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import Img from "gatsby-image"
-import {useInterval} from './interval';
+import {shuffle} from 'lodash';
 
 const Image = () => {
-  const [img, setImg] = useState(undefined);
 
   const data = useStaticQuery(graphql`
     query {
@@ -21,21 +20,18 @@ const Image = () => {
       }
     }
   `)
-    const count = data.allFile.edges.length;
 
-    const fetchRandom = (count) => {
-      return Math.ceil(Math.random() * (count - 1))
-    };
+    const items = shuffle(data.allFile.edges);
 
-    useInterval(() => {
-      setImg(data.allFile.edges[fetchRandom(count)].node.childImageSharp.fluid);
-    }, 1000);
-
-
-    if(!img) {
-      setImg(data.allFile.edges[fetchRandom(count)].node.childImageSharp.fluid)
-    }
-  return <Img fluid={img} />
+  return (
+    <div className="card-columns">
+      {items.map(e => (
+        <div className="card">
+          <Img fluid={e.node.childImageSharp.fluid} className="card-img-top" />
+        </div>
+      ))}
+    </div>
+  );
 }
 
 export default Image

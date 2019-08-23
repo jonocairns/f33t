@@ -7,7 +7,11 @@ import Image from "../components/image"
 const IndexPage = () => (
   <Layout>
     <SEO title="Home" />
+
     <Image />
+    
+
+    
   </Layout>
 )
 
