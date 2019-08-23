@@ -78,6 +78,23 @@ function SEO({ description, lang, meta, title }) {
           property: `og:image:height`,
           content: image.childImageSharp.original.height,
         },
+
+        {
+          property: `twitter:card`,
+          content: `summary`,
+        },
+        {
+          property: `twitter:title`,
+          content: `Feet. Need I say more?`,
+        },
+        {
+          property: `twitter:description`,
+          content: `Feed your inner podiatrist. Walk on over with those sexy sandals and procede to enjoy this perfectly curated selection of delious feet.`,
+        },
+        {
+          property: `twitter:image`,
+          content: `${site.siteMetadata.siteUrl}${image.childImageSharp.original.src}`,
+        },
       ]}
     />
   )
