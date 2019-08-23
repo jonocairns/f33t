@@ -56,11 +56,11 @@ function SEO({ description, lang, meta, title }) {
       meta={[
         {
           property: `og:title`,
-          content: title,
+          content: 'Feet. Need I say more?',
         },
         {
           property: `og:description`,
-          content: `Who doesn't like feet?`
+          content: `Feed your inner podiatrist. Walk on over with those sexy sandals and procede to enjoy this perfectly curated selection of delious feet.`
         },
         {
           property: `og:type`,
