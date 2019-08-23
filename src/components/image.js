@@ -16,17 +16,26 @@ import Img from "gatsby-image"
 const Image = () => {
   const data = useStaticQuery(graphql`
     query {
-      placeholderImage: file(relativePath: { eq: "gatsby-astronaut.png" }) {
-        childImageSharp {
-          fluid(maxWidth: 300) {
-            ...GatsbyImageSharpFluid
+      allFile {
+        edges {
+          node {
+            childImageSharp {
+              fluid(maxWidth: 400, quality: 100) {
+                ...GatsbyImageSharpFluid
+              }
+            }
           }
         }
       }
     }
   `)
+    const count = data.allFile.edges.length;
 
-  return <Img fluid={data.placeholderImage.childImageSharp.fluid} />
+    const fetchRandom = (count) => {
+      return Math.ceil(Math.random() * (count - 1))
+    };
+
+  return <Img fluid={data.allFile.edges[fetchRandom(count)].node.childImageSharp.fluid} />
 }
 
 export default Image
