@@ -29,12 +29,21 @@ function SEO({ description, lang, meta, title }) {
             node {
               id
               publicURL
+              childImageSharp {
+                original {
+                  width
+                  height
+                  src
+                }
+              }
             }
           }
         }
       }
     `
   )
+
+      const image = shuffle(allFile.edges)[0].node;
 
   return (
     <Helmet
@@ -50,12 +59,24 @@ function SEO({ description, lang, meta, title }) {
           content: title,
         },
         {
+          property: `og:description`,
+          content: `Who doesn't like feet?`
+        },
+        {
           property: `og:type`,
           content: `website`,
         },
         {
           property: `og:image`,
-          content: `${site.siteMetadata.siteUrl}${shuffle(allFile.edges)[0].node.publicURL}`,
+          content: `${site.siteMetadata.siteUrl}${image.childImageSharp.original.src}`,
+        },
+        {
+          property: `og:image:width`,
+          content: image.childImageSharp.original.width,
+        },
+        {
+          property: `og:image:height`,
+          content: image.childImageSharp.original.height,
         },
       ]}
     />
