@@ -3,6 +3,7 @@ module.exports = {
     title: `f33t`,
     description: `cheers boys`,
     author: `lol`,
+    siteUrl: "https://feetpics.nz"
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -16,6 +17,19 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sass`,
     `gatsby-plugin-sharp`,
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `f33t`,
+        short_name: `f33t`,
+        start_url: `/`,
+        description: `Who doesnt like feet?`,
+        lang: `en`,
+        icon: `src/components/favicon.png`,
+        background_color: `#f7f0eb`,
+        theme_color: `#a2466c`,
+      }
+    }
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

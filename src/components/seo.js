@@ -9,9 +9,10 @@ import React from "react"
 import PropTypes from "prop-types"
 import Helmet from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
+import {shuffle} from 'lodash'
 
 function SEO({ description, lang, meta, title }) {
-  const { site } = useStaticQuery(
+  const { site, allFile } = useStaticQuery(
     graphql`
       query {
         site {
@@ -19,20 +20,44 @@ function SEO({ description, lang, meta, title }) {
             title
             description
             author
+            siteUrl
+          }
+        }
+
+        allFile {
+          edges {
+            node {
+              id
+              publicURL
+            }
           }
         }
       }
     `
   )
-  
+
   return (
     <Helmet
       htmlAttributes={{
         lang,
       }}
       title={title}
-      titleTemplate={`%s | ${site.siteMetadata.title}`}
-      
+      titleTemplate={site.siteMetadata.title}
+      description="Who doesnt like feet?"
+      meta={[
+        {
+          property: `og:title`,
+          content: title,
+        },
+        {
+          property: `og:type`,
+          content: `website`,
+        },
+        {
+          property: `og:image`,
+          content: `${site.siteMetadata.siteUrl}${shuffle(allFile.edges)[0].node.publicURL}`,
+        },
+      ]}
     />
   )
 }
