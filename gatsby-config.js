@@ -29,7 +29,13 @@ module.exports = {
         background_color: `#f7f0eb`,
         theme_color: `#a2466c`,
       }
-    }
+    },
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: "UA-146432627-1",
+      },
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
